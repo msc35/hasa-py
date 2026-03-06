@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hasa"
-version = "0.1.0"
+version = "0.1.1"
 description = "History-Aware Sampling Algorithm for robust deep learning under label noise"
 readme = "README.md"
 requires-python = ">=3.9"

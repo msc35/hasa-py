@@ -11,7 +11,6 @@ from typing import Any, Callable
 
 import torch
 import torch.nn as nn
-from torch import Tensor
 from torch.utils.data import DataLoader
 
 from .selector import HASA
@@ -149,10 +148,7 @@ class HASATrainer:
             mask = self.selector.step(indices, losses.detach())
             n_selected = mask.sum().item()
 
-            if n_selected > 0:
-                loss = (losses * mask).sum() / mask.sum()
-            else:
-                loss = losses.mean()
+            loss = (losses * mask).sum() / mask.sum() if n_selected > 0 else losses.mean()
 
             loss.backward()
             self.optimizer.step()

@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
+import pytest
 import torch
 import torch.nn as nn
-import pytest
 
 from hasa import HASA, hard_select
 
@@ -155,5 +155,5 @@ class TestHASA:
         selector = HASA(num_samples=10, window_size=3)
         indices = torch.arange(5)
         losses = torch.rand(5, requires_grad=True)
-        mask = selector.step(indices, losses)
+        selector.step(indices, losses)
         assert not selector._buffer.buffer.requires_grad

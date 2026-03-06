@@ -95,10 +95,7 @@ class TestIntegration:
                 losses = criterion(model_hasa(x), y)
                 mask = selector.step(indices, losses.detach())
                 n_sel = mask.sum()
-                if n_sel > 0:
-                    loss = (losses * mask).sum() / n_sel
-                else:
-                    loss = losses.mean()
+                loss = (losses * mask).sum() / n_sel if n_sel > 0 else losses.mean()
                 loss.backward()
                 opt_hasa.step()
                 opt_hasa.zero_grad()
@@ -122,7 +119,7 @@ class TestIntegration:
         selector = HASA(num_samples=200, window_size=5, select_ratio=0.5)
 
         for epoch in range(5):
-            for indices, x, y in loader:
+            for indices, x, _y in loader:
                 losses = torch.rand(len(x))
                 mask = selector.step(indices, losses)
                 assert mask.all(), f"Warm-up epoch {epoch} should select all"

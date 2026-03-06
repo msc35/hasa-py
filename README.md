@@ -5,7 +5,7 @@
 [![PyPI version](https://img.shields.io/pypi/v/hasa.svg)](https://pypi.org/project/hasa/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A lightweight, pip-installable PyTorch library for **robust deep learning training under label noise**.
+A lightweight, pip-installable PyTorch library for **robust deep learning training under noise**.
 
 HASA tracks each training sample's loss trajectory over a sliding window and uses **loss variance** as a noise indicator.
 Clean samples stabilise quickly (low variance); noisy/mislabelled samples oscillate (high variance).
